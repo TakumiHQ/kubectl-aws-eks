@@ -7,13 +7,13 @@ echo "$KUBE_CONFIG_DATA" | base64 -d > /tmp/config
 export KUBECONFIG=/tmp/config
 
 if [ -z ${KUBECTL_VERSION+x} ] ; then
-    echo "Using kubectl version: $(kubectl version --client --short)"
+    echo "Using kubectl version: $(kubectl version --client)"
 else
     echo "Pulling kubectl for version $KUBECTL_VERSION"
     rm /usr/bin/kubectl
     curl -sL -o /usr/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/"$KUBECTL_VERSION"/bin/linux/amd64/kubectl && \
         chmod +x /usr/bin/kubectl
-    echo "Using kubectl version: $(kubectl version --client --short)"
+    echo "Using kubectl version: $(kubectl version --client)"
 fi
 
 if [ -z ${IAM_VERSION+x} ] ; then
